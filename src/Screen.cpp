@@ -48,7 +48,7 @@ void ScreenManager::update()
 
 Screen& ScreenManager::peekScreen() { return *m_screens.top(); }
 
-bool ScreenManager::hasScreen() const { return !m_screens.empty(); }
+bool ScreenManager::isEmpty() const { return m_screens.empty(); }
 
 Screen::Screen(ScreenManager* screens)
     : m_pScreens(screens)

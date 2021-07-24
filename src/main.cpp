@@ -20,7 +20,7 @@ int main()
     screens.update();
 
     sf::Clock updateClock;
-    while (window.isOpen() || !screens.hasScreen()) {
+    while (window.isOpen() && !screens.isEmpty()) {
         sf::Event e;
         while (window.pollEvent(e)) {
             keyboard.update(e);
@@ -46,10 +46,11 @@ int main()
         screens.peekScreen().onUpdate(dt.asSeconds());
 
         window.clear();
-        screens.peekScreen().onGUI();
         screens.peekScreen().onRender(&window);
 
+        screens.peekScreen().onGUI();
         ImGui::SFML::Render(window);
+
         window.display();
         screens.update();
     }

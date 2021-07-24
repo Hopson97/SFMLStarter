@@ -29,7 +29,7 @@ class ScreenManager final {
 
     Screen& peekScreen();
 
-    bool hasScreen() const;
+    bool isEmpty() const;
 
   private:
     std::stack<std::unique_ptr<Screen>> m_screens;

@@ -21,3 +21,6 @@ class ScreenGame final : public Screen {
     sf::RectangleShape m_sprite;
     sf::Clock m_clock;
 };
+
+bool imguiBeginMenu(const char* name);
+bool imguiButtonCustom(const char* text);
