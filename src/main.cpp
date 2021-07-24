@@ -43,9 +43,9 @@ int main()
         ImGui::SFML::Update(window, dt);
 
         screens.peekScreen().onInput();
-        screens.peekScreen().onUpdate(dt.asSeconds());
+        screens.peekScreen().onUpdate(dt);
 
-        window.clear();
+        window.clear({0, 200, 100});
         screens.peekScreen().onRender(&window);
 
         screens.peekScreen().onGUI();

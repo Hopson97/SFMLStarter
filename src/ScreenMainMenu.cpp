@@ -11,7 +11,7 @@ ScreenMainMenu::ScreenMainMenu(ScreenManager* stack)
 void ScreenMainMenu::onGUI()
 {
     if (imguiBeginMenu("M A I N   M E N U")) {
-        ImGui::Text("Welcome to Pong 3D by Hopson");
+        ImGui::Text("Welcome to xyz by Hopson");
         ImGui::Separator();
 
         if (imguiButtonCustom("Start Game")) {

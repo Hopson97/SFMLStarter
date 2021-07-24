@@ -11,6 +11,7 @@ conan_basic_setup()
 add_executable(${PROJECT_NAME}     
     src/main.cpp
 
+	src/Animation.cpp
 	src/Screen.cpp
 	src/ScreenMainMenu.cpp
 	src/ScreenGame.cpp

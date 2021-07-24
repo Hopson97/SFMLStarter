@@ -5,9 +5,14 @@
 
 ScreenGame::ScreenGame(ScreenManager* stack)
     : Screen(stack)
-
+    , m_recruitWalkAnimation(40, 40)
 {
     m_sprite.setSize({64, 64});
+    m_recruitTexture.loadFromFile("Data/Recruit.png");
+    //m_recruitWalkAnimation.addFrame(0, 0, sf::milliseconds(500));
+    m_recruitWalkAnimation.addFrame(0, 1, sf::milliseconds(500));
+    m_recruitWalkAnimation.addFrame(0, 2, sf::milliseconds(500));
+    //m_recruitWalkAnimation.addFrame(0, 1, sf::milliseconds(500));
 }
 
 void ScreenGame::onGUI()
@@ -19,28 +24,17 @@ void ScreenGame::onGUI()
     ImGui::End();
 }
 
-void ScreenGame::onUpdate(float dt)
+void ScreenGame::onUpdate(const sf::Time& dt)
 {
     static float y = 500;
-    y += std::sin(m_clock.getElapsedTime().asSeconds() * dt * 100);
-    m_sprite.setPosition({300, y});
+    static float x = 500;
+    y += std::sin(m_clock.getElapsedTime().asSeconds() * dt.asSeconds() * 100);
+    x += std::cos(m_clock.getElapsedTime().asSeconds() * dt.asSeconds() * 100);
+    m_sprite.setPosition({x, y});
 }
-void ScreenGame::onRender(sf::RenderWindow* window) { window->draw(m_sprite); }
-
-bool imguiBeginMenu(const char* name)
+void ScreenGame::onRender(sf::RenderWindow* window)
 {
-    ImVec2 windowSize(1280 / 4, 720 / 2);
-    ImGui::SetNextWindowSize(windowSize, ImGuiCond_Always);
-    ImGui::SetNextWindowPos({windowSize.x + windowSize.x * 4 / 8.0f, windowSize.y / 2},
-                            ImGuiCond_Always);
-    return ImGui::Begin(name, nullptr,
-                        ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize |
-                            ImGuiWindowFlags_NoCollapse |
-                            ImGuiWindowFlags_AlwaysAutoResize);
-}
-
-bool imguiButtonCustom(const char* text)
-{
-    ImGui::SetCursorPos({ImGui::GetCursorPosX() + 100, ImGui::GetCursorPosY() + 20});
-    return ImGui::Button(text, {100, 50});
+    m_sprite.setTexture(&m_recruitTexture);
+    m_sprite.setTextureRect(m_recruitWalkAnimation.getFrame());
+    window->draw(m_sprite);
 }

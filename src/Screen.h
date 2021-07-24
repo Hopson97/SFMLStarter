@@ -43,9 +43,12 @@ class Screen {
 
     virtual void onGUI() {}
     virtual void onInput() {}
-    virtual void onUpdate([[maybe_unused]] float dt) {}
+    virtual void onUpdate([[maybe_unused]] const sf::Time& dt) {}
     virtual void onRender(sf::RenderWindow* window) = 0;
 
   protected:
     ScreenManager* m_pScreens;
 };
+
+bool imguiBeginMenu(const char* name);
+bool imguiButtonCustom(const char* text);

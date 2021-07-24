@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Animation.h"
 #include "Screen.h"
 
 class ScreenGame final : public Screen {
@@ -12,7 +13,7 @@ class ScreenGame final : public Screen {
     ScreenGame(ScreenManager* screens);
 
     void onGUI() override;
-    void onUpdate(float dt) override;
+    void onUpdate(const sf::Time& dt) override;
     void onRender(sf::RenderWindow* window) override;
 
   private:
@@ -20,7 +21,7 @@ class ScreenGame final : public Screen {
 
     sf::RectangleShape m_sprite;
     sf::Clock m_clock;
-};
+    sf::Texture m_recruitTexture;
 
-bool imguiBeginMenu(const char* name);
-bool imguiButtonCustom(const char* text);
+    Animation m_recruitWalkAnimation;
+};
