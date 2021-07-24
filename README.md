@@ -1,6 +1,11 @@
 # SFML Starter
 
-Starter framework for SFML based applications, feat
+Starter framework for SFML based applications.
+
+Features:
+
+* Screen system for switching between states such as "Main Menu" and "In Game" screens
+* Custom immediate mode GUI system
 
 ## Building and Running
 
