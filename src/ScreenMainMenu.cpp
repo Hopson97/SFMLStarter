@@ -1,7 +1,6 @@
 #include "ScreenMainMenu.h"
-
-#include "GUI.h"
 #include "ScreenGame.h"
+#include <imgui_sfml/imgui.h>
 
 ScreenMainMenu::ScreenMainMenu(ScreenManager* stack)
     : Screen(stack)
@@ -9,10 +8,12 @@ ScreenMainMenu::ScreenMainMenu(ScreenManager* stack)
 {
 }
 
-void ScreenMainMenu::onGUI(GUI* gui)
+void ScreenMainMenu::onGUI()
 {
-    if (gui->button({50, 50}, {50, 50})) {
+    ImGui::Begin("Main Menu");
+    if (ImGui::Button("Play Game")) {
         m_pScreens->pushScreen(std::make_unique<ScreenGame>(m_pScreens));
     }
+    ImGui::End();
 }
 void ScreenMainMenu::onRender(sf::RenderWindow* window) {}

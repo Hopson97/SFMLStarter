@@ -11,7 +11,7 @@ class ScreenMainMenu final : public Screen {
   public:
     ScreenMainMenu(ScreenManager* screens);
 
-    void onGUI(GUI* gui) override;
+    void onGUI() override;
     void onRender(sf::RenderWindow* window) override;
 
   private:

@@ -14,8 +14,6 @@ add_executable(${PROJECT_NAME}
 	src/Screen.cpp
 	src/ScreenMainMenu.cpp
 	src/ScreenGame.cpp
-
-	src/GUI.cpp
 )
 
 #Set C++17
@@ -37,8 +35,16 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 #Find libraries
 find_package(Threads)
 
+add_subdirectory(deps/imgui_sfml)
+target_include_directories(${PROJECT_NAME} PRIVATE deps)
+
+
+
 #Finally
 target_link_libraries(${PROJECT_NAME} 
     Threads::Threads 
     ${CONAN_LIBS}
+
+	imgui_sfml
 )
+

@@ -11,7 +11,7 @@ class ScreenGame final : public Screen {
   public:
     ScreenGame(ScreenManager* screens);
 
-    void onGUI(GUI* gui) override;
+    void onGUI() override;
     void onUpdate(float dt) override;
     void onRender(sf::RenderWindow* window) override;
 

@@ -1,8 +1,7 @@
 #include "ScreenGame.h"
-#include <cmath>
-
-#include "GUI.h"
 #include "ScreenMainMenu.h"
+#include <cmath>
+#include <imgui_sfml/imgui.h>
 
 ScreenGame::ScreenGame(ScreenManager* stack)
     : Screen(stack)
@@ -11,11 +10,13 @@ ScreenGame::ScreenGame(ScreenManager* stack)
     m_sprite.setSize({64, 64});
 }
 
-void ScreenGame::onGUI(GUI* gui)
+void ScreenGame::onGUI()
 {
-    if (gui->button({50, 50}, {50, 50})) {
+    ImGui::Begin("Menu");
+    if (ImGui::Button("Exit Game")) {
         m_pScreens->popScreen();
     }
+    ImGui::End();
 }
 
 void ScreenGame::onUpdate(float dt)

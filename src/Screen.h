@@ -41,7 +41,7 @@ class Screen {
     Screen(ScreenManager* screens);
     virtual ~Screen() = default;
 
-    virtual void onGUI([[maybe_unused]] GUI* gui) {}
+    virtual void onGUI() {}
     virtual void onInput() {}
     virtual void onUpdate([[maybe_unused]] float dt) {}
     virtual void onRender(sf::RenderWindow* window) = 0;

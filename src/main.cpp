@@ -1,8 +1,10 @@
-#include "GUI.h"
 #include "Keyboard.h"
 #include "Screen.h"
 #include "ScreenMainMenu.h"
 #include <SFML/Graphics/RenderWindow.hpp>
+
+#include <imgui_sfml/imgui-SFML.h>
+#include <imgui_sfml/imgui.h>
 
 int main()
 {
@@ -10,7 +12,8 @@ int main()
     window.setFramerateLimit(60);
     window.setKeyRepeatEnabled(false);
 
-    GUI gui(&window);
+    ImGui::SFML::Init(window);
+
     Keyboard keyboard;
     ScreenManager screens;
     screens.pushScreen(std::make_unique<ScreenMainMenu>(&screens));
@@ -21,7 +24,7 @@ int main()
         sf::Event e;
         while (window.pollEvent(e)) {
             keyboard.update(e);
-            gui.onEvent(e);
+            ImGui::SFML::ProcessEvent(e);
             switch (e.type) {
                 case sf::Event::Closed:
                     window.close();
@@ -36,15 +39,17 @@ int main()
                     break;
             }
         }
+        auto dt = updateClock.restart();
+        ImGui::SFML::Update(window, dt);
+
         screens.peekScreen().onInput();
-        screens.peekScreen().onUpdate(updateClock.restart().asSeconds());
+        screens.peekScreen().onUpdate(dt.asSeconds());
 
         window.clear();
-        screens.peekScreen().onGUI(&gui);
+        screens.peekScreen().onGUI();
         screens.peekScreen().onRender(&window);
 
-        gui.render();
-
+        ImGui::SFML::Render(window);
         window.display();
         screens.update();
     }
