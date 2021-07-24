@@ -18,8 +18,6 @@ int main()
 
     sf::Clock updateClock;
     while (window.isOpen() || !screens.hasScreen()) {
-        gui.beginFrame();
-
         sf::Event e;
         while (window.pollEvent(e)) {
             keyboard.update(e);
@@ -44,6 +42,8 @@ int main()
         window.clear();
         screens.peekScreen().onGUI(&gui);
         screens.peekScreen().onRender(&window);
+
+        gui.render();
 
         window.display();
         screens.update();

@@ -46,4 +46,4 @@ else
     target_debug
 fi
 
-cp -R Data SFMLStarter/Data
+cp -R Data SFMLStarter/
